@@ -1,6 +1,6 @@
 html{
     max-width: 1200px;
-    margin: 0 -30px;
+    margin: 0 auto;
 }
 
 .logo{
@@ -12,19 +12,17 @@ html{
 }
 
 .name{
-    flex: 0 0 50%;
+    flex: 0 0 55%;
 }
 
 header{
     background-color: rgb(240, 240, 240);
     display: flex;
-    justify-content: space-between;
 }
 
 .menu{
-    flex: 0 0 40%;
+    flex: 0 0 35%;
     margin-top: 3px;
-    flex: 1;
     padding: 10px;
 }
 
