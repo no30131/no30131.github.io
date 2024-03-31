@@ -1,0 +1,36 @@
+.logo{
+    max-width: 128px;
+}
+
+header{
+    display: flex;
+}
+
+.menu{
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+.search-input{
+    height: 20px;
+    width: 100px;
+    padding: 10px;
+}
+
+.banner{
+    background-image: url('cs_products.jpg');
+    /*background-size: cover;*/
+    background-repeat: no-repeat;
+    background-position: center;
+    /*background-color: #ccc;*/
+    margin: auto -20px;
+    height: 500px;
+}
+
+.register{
+    background-color: black;
+    color: aliceblue;
+    border-radius: 10px;
+}
