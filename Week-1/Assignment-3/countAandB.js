@@ -8,9 +8,12 @@ function countAandB(input) {
 }
     
 function toNumber(input) {
-    const toNumberMap = {
-        'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5
-    };
+    const toNumberMap = {};
+    const startChar = 'a'.charCodeAt(0);
+
+    for (let i = 0; i < 26; i ++){
+        toNumberMap[String.fromCharCode(startChar + i)] = i + 1;
+    }
 
     return input.map(char => toNumberMap[char] || char);
 }
