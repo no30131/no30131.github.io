@@ -8,14 +8,12 @@ function countAandB(input) {
 }
     
 function toNumber(input) {
-    const toNumberMap = {};
     const startChar = 'a'.charCodeAt(0);
 
-    for (let i = 0; i < 26; i ++){
-        toNumberMap[String.fromCharCode(startChar + i)] = i + 1;
-    }
-
-    return input.map(char => toNumberMap[char] || char);
+    return input.map(char => {
+        const charCode = char.charCodeAt(0);
+        return (charCode >= startChar && charCode < startChar +26) ? charCode - startChar + 1 : char;
+    });
 }
     
 let input1 = ['a', 'b', 'c', 'a', 'c', 'a', 'c'];
