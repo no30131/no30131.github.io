@@ -13,11 +13,11 @@ function binarySearchPosition(numbers, target) {
         if (target === numbers[mid]) {
             return mid;
         } else if (target < numbers[mid]) {
-            right = mid - 1;
-            // console.log(`right=${right}`);
+            right = mid - 1; 
+            // 若目標小於中間值，代表目標在中間值左邊的區域
+            // 將右邊的邊界移至中間值 -1 的值，縮小搜索範圍
         } else {
             left = mid + 1;
-            // console.log(`left=${left}`);
         }
     }
     return -1; // 若往左往右都找不到就返回 -1
