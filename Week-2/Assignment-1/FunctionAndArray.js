@@ -25,9 +25,7 @@ function findPosition(numbers, target) {
         }
     }
     // 如果遍歷結束還沒找到相符值，回傳 -1
-    if (numbers.includes !== target) {
-        return -1;
-    }
+    return -1;
 }
 
 console.log(max([1, 2, 4, 5])); // should print 5
