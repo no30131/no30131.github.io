@@ -7,7 +7,7 @@
 function max(numbers) {
     // your code here, for-loop method preferred
     // 使用 for 迴圈遍歷陣列並比較是否有更大的數字，若有就記到 maxNumber
-    let maxNumber = 0; // 預設最大數為 0
+    let maxNumber = numbers[0]; // 預設最大數為陣列第一位數
     for (let i = 0; i < numbers.length; i++ ) {
         if (numbers[i] > maxNumber) {
             maxNumber = numbers[i];
