@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+  head
+    title Landing Page
+  body
+    h2 Assignment 2: Build Backend API for Front-End
+    if name
+      h3 You type number: #{name} 
+    else
+      h3 Lack of Parameter 
+      form(action='/data', method='post')
+        label Please enter a number:
+          input(type='number', name='inputnumber')
+          //- , id='inputnumber'
+        button(type='submit') Submit
+      
+  //- script 
+  //-   document.addEventListener('DOMContentLoaded')
