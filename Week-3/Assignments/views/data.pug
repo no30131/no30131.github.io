@@ -4,15 +4,21 @@ html(lang="en")
     title Landing Page
   body
     h2 Assignment 2: Build Backend API for Front-End
-    if name
-      h3 You type number: #{name} 
+    if error 
+      h3 #{error}
+      form(action='/data', method='post')
+        label Please enter a number:
+          input(type='number', name='inputnumber')
+        button(type='submit') Submit
+      // 如果輸入非整數值，顯示錯誤及數字輸入框
+    else if inputnumber
+      h3 You type number: #{inputnumber} 
+      h3 Sum of numbers from 1 to #{inputnumber}: #{sum}
+      // 如果輸入整數值，顯示輸入的數字，以及加總的值
     else
       h3 Lack of Parameter 
       form(action='/data', method='post')
         label Please enter a number:
           input(type='number', name='inputnumber')
-          //- , id='inputnumber'
         button(type='submit') Submit
-      
-  //- script 
-  //-   document.addEventListener('DOMContentLoaded')
+      // 如果還沒輸入值，顯示數字輸入框
