@@ -10,6 +10,7 @@ app.set("view engine", "pug");
 
 router.use(cookieParser());
 router.use(bodyParser.urlencoded({ extended: false }));
+router.use('/', express.static('public'));
 
 // Assignment 1
 app.get("/", (req, res) => {
@@ -33,7 +34,7 @@ router.get("/data", (req, res) => {
   }
   // 計算總和並顯示
   const sum = calculateSum(Number(number));
-  res.render("data", { inputnumber: number, sum: sum });
+  res.json({ inputnumber: number, sum: sum });
 });
 
 // 顯示使用者輸入的數字 ( 輸入框限定要整數，所以這裡只要判斷是否為負數 )
@@ -46,7 +47,7 @@ router.post("/data", (req, res) => {
   }
   // 計算總和並顯示
   const sum = calculateSum(Number(inputNumber));
-  res.render("data", { inputnumber: inputNumber, sum: sum });
+  res.json({ inputnumber: inputNumber, sum: sum });
 });
 
 // 計算數字總和

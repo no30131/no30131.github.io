@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+  </head>
+  <body>
+    <h1>Welcome to sum.html</h1>
+    <h2>Assignment 3: Connect to Backend API by AJAX</h2>
+    <form id="numberForm">
+      <label
+        >Please enter a number:
+        <input type="number" name="inputnumber" id="inputNumber" />
+      </label>
+      <button>Check the result</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+      // 當所有元素載入完成，開始以下的程式
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("numberForm");
+
+        form.addEventListener("submit", (event) => {
+          // 阻止表單重新加載頁面
+          event.preventDefault();
+
+          const inputNumber = document.getElementById("inputNumber").value;
+
+          // 如果為空值或負數或大於 10000，請使用者輸入正確數值
+          if (inputNumber === "" || inputNumber < 0 || inputNumber > 10000) {
+            document.getElementById("result").innerHTML =
+              "Please enter an positive integer less than or equal to 10000.";
+            return;
+          }
+
+          // 透過 AJAX 到 /data 頁面執行加總的程式，並返回 json 值
+          fetch(`/data?number=${inputNumber}`)
+            .then(response => response.json())
+            .then(data => {
+              console.log(data);
+              document.getElementById("result").innerHTML = `
+                <h3>You type number: ${inputNumber}</h3>
+                <h3>Sum of numbers from 1 to ${inputNumber}: ${data.sum}</h3>
+              `;
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+      });
+    </script>
+  </body>
+</html>
