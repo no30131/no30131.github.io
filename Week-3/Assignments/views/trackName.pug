@@ -1,0 +1,10 @@
+h3 Hi! 
+if name
+  h3 Welcome, #{name}! 
+  // 如果使用者的名字已經有存到 cookies
+else 
+  form(action='/myName', method='post')
+    label Please enter your name:
+      input(type='text', name='name', id='name')
+    button(type='submit') Submit
+  // 如果還沒，顯示輸入框和提交按鈕

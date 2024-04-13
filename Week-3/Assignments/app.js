@@ -55,4 +55,35 @@ function calculateSum(n) {
   return (n * (n + 1)) / 2;
 }
 
+// Assignment 4
+router.get("/myName", (req, res) => {
+  const name = req.cookies.name || "";
+  res.render("myName", { name: name });
+  // res.render("myName");
+});
+
+router.post("/myName", (req, res) => {
+  res.cookie('name', req.body.name);
+  // res.redirect(`/myName?name=${req.body.name}`);
+  res.render("myName", { name: req.body.name });
+})
+
+router.get("/trackName", (req, res) => {
+  const nameQuery = req.query.name;
+  
+  // 如果輸入 /trackName?name=使用者名字，就存到 name 的 cookie
+  if (nameQuery) {
+    res.cookie('name', nameQuery);
+  }
+
+  const name = req.cookies.name || "";
+  res.json({ name: name });
+});
+
+router.post("/trackName", (req, res) => {
+  const name = req.body.name;
+  res.json({ name: name });
+});
+
+
 module.exports = router;
