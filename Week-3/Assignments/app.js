@@ -55,16 +55,16 @@ function calculateSum(n) {
   return (n * (n + 1)) / 2;
 }
 
-// Assignment 4
+// Assignment 4，每一步都用 console 檢查狀態
 router.get("/myName", (req, res) => {
   const name = req.cookies.name || "";
+  console.log('get.myName.name', name);
   res.render("myName", { name: name });
-  // res.render("myName");
 });
 
 router.post("/myName", (req, res) => {
   res.cookie('name', req.body.name);
-  // res.redirect(`/myName?name=${req.body.name}`);
+  console.log('post.myName.req.body.name', req.body.name);
   res.render("myName", { name: req.body.name });
 })
 
@@ -73,17 +73,22 @@ router.get("/trackName", (req, res) => {
   
   // 如果輸入 /trackName?name=使用者名字，就存到 name 的 cookie
   if (nameQuery) {
-    res.cookie('name', nameQuery);
+    res.cookie('name', nameQuery); 
+    console.log('get.trackName.nameQuery', nameQuery);
+    res.redirect(`/myName`);
   }
 
+  // 如果直接到 /trackName 頁面，就顯示目前的 cookie
   const name = req.cookies.name || "";
+  console.log('get.trackName.name', name);
   res.json({ name: name });
 });
 
-router.post("/trackName", (req, res) => {
-  const name = req.body.name;
-  res.json({ name: name });
-});
+// router.post("/trackName", (req, res) => {
+//   const name = req.body.name;
+//   console.log('post.trackName.name', name);
+//   res.json({ name: name });
+// });
 
 
 module.exports = router;
