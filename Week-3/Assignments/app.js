@@ -29,7 +29,7 @@ router.get("/data", (req, res) => {
   // 判斷輸入的是否為正整數，是就跳下一步，不是就進 if 顯示訊息
   // 為防止 n 太大影響程式運作，將範圍設在 0 ~ 10000
   if (isNaN(number) || number % 1 !== 0 || number < 0 || number > 10000){
-    res.render("data", { error: "Please enter an positive integer less than or equal to 10000."});
+    res.json({ error: "Please enter an positive integer less than or equal to 10000."});
     return;
   }
   // 計算總和並顯示
@@ -42,7 +42,7 @@ router.post("/data", (req, res) => {
   const inputNumber = req.body.inputnumber;
   // 為防止 n 太大影響程式運作，將範圍設在 0 ~ 10000
   if (inputNumber < 0 || inputNumber > 10000){
-    res.render("data", { error: "Please enter an positive integer less than or equal to 10000."});
+    res.json({ error: "Please enter an positive integer less than or equal to 10000."});
     return;
   }
   // 計算總和並顯示
