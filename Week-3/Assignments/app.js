@@ -62,16 +62,23 @@ router.get("/myName", (req, res) => {
   res.render("myName", { name: name });
 });
 
-router.post("/myName", (req, res) => {
-  res.cookie('name', req.body.name);
-  console.log('post.myName.req.body.name', req.body.name);
-  res.render("myName", { name: req.body.name });
-})
+// router.post("/myName", (req, res) => {
+//   res.cookie('name', req.body.name);
+//   console.log('post.myName.req.body.name', req.body.name);
+//   res.render("myName", { name: req.body.name });
+// })
 
-router.get("/trackName", (req, res) => {
+router.get("/trackName", (req, res) => { 
+  // 如果直接輸入 /trackName?name=使用者名字，
+  // 或從myName頁面填寫表單，將名字存到 name 的 cookie
   const nameQuery = req.query.name;
-  
-  // 如果輸入 /trackName?name=使用者名字，就存到 name 的 cookie
+
+  // 如果什麼都沒輸入就送出，提示需輸入
+  if (!nameQuery) {
+    console.log('Please enter name!');
+    return;
+  }
+
   if (nameQuery) {
     res.cookie('name', nameQuery); 
     console.log('get.trackName.nameQuery', nameQuery);

@@ -3,7 +3,7 @@ if name
   h3 Welcome, #{name}! 
   // 如果使用者的名字已經有存到 cookies
 else 
-  form(id='nameForm', action='/myName', method='post')
+  form(id='nameForm', action='/trackName', method='get')
     label Please enter your name:
       input(type='text', name='name', id='name')
     button(type='submit') Submit
