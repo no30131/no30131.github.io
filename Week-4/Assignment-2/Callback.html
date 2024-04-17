@@ -7,8 +7,12 @@
     <h2>Assignment 2: Callback Function and Advanced HTML DOM</h2>
     <button id="goButton">GO</button>
 
+    <div id="dataContainer"></div>
+
     <script>
       const goButton = document.querySelector("#goButton");
+      const dataContainer = document.querySelector('#dataContainer');
+
       goButton.addEventListener("click", () =>
         ajax(
           "https://remote-assignment.s3.ap-northeast-1.amazonaws.com/products",
@@ -29,9 +33,29 @@
       function render(data) {
         // your code here
         // document.createElement() and appendChild() methods are preferred.
-        const div = document.createElement("div");
-        div.textContent = JSON.stringify(data);
-        document.body.appendChild(div);
+        data.forEach(data => {
+          const dataDiv = document.createElement("div");
+          dataDiv.className = "data";
+
+          const nameDiv = document.createElement("div");
+          nameDiv.className = "name";
+          nameDiv.textContent = `Name: ${data.name}`;
+
+          const priceDiv = document.createElement("div");
+          priceDiv.className = "price";
+          priceDiv.textContent = `Price: ${data.price}`;
+
+          const descriptionDiv = document.createElement("div");
+          descriptionDiv.className = "description";
+          descriptionDiv.textContent = `Description: ${data.description}`;
+
+          dataDiv.appendChild(nameDiv);
+          dataDiv.appendChild(priceDiv);
+          dataDiv.appendChild(descriptionDiv);
+          
+          dataContainer.appendChild(dataDiv);  
+        });
+        
       }
 
       // you should get product information in JSON format and render data in the page
