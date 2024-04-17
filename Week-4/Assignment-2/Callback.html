@@ -2,6 +2,14 @@
 <html>
   <head>
     <title>Assignment-2</title>
+    <style>
+      #dataContainer{
+          display: flex;
+          gap: 50px;
+          padding-top: 50px;
+          flex-direction: row;
+      }
+  </style>
   </head>
   <body>
     <h2>Assignment 2: Callback Function and Advanced HTML DOM</h2>
@@ -36,7 +44,8 @@
         data.forEach(data => {
           const dataDiv = document.createElement("div");
           dataDiv.className = "data";
-
+          dataDiv.setAttribute("style", "background-color: rgb(241, 231, 255); min-height: 100px; align-items: center; display: flex; flex-direction: column; gap: 10px; padding-top: 20px; min-width: 200px;");
+          
           const nameDiv = document.createElement("div");
           nameDiv.className = "name";
           nameDiv.textContent = data.name;
