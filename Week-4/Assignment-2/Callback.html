@@ -39,15 +39,15 @@
 
           const nameDiv = document.createElement("div");
           nameDiv.className = "name";
-          nameDiv.textContent = `Name: ${data.name}`;
+          nameDiv.textContent = data.name;
 
           const priceDiv = document.createElement("div");
           priceDiv.className = "price";
-          priceDiv.textContent = `Price: ${data.price}`;
+          priceDiv.textContent = data.price;
 
           const descriptionDiv = document.createElement("div");
           descriptionDiv.className = "description";
-          descriptionDiv.textContent = `Description: ${data.description}`;
+          descriptionDiv.textContent = data.description;
 
           dataDiv.appendChild(nameDiv);
           dataDiv.appendChild(priceDiv);
