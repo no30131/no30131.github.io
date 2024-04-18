@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    title Assignment 3: Build a Website with MySQL
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body
+    header
+      h1 Assignment 3: Build a Website with MySQL
+      h2 Welcome to home page!!
+    main
+      form(action='/', method='post')
+        label Please enter info to register:
+          div.container
+            input(type='email', name='email', placeholder='email')
+            input(type='text', name='username', placeholder='username')
+            input(type='password', name='password', placeholder='password')
+          button(type='submit', class='button') Submit
