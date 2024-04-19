@@ -1,17 +1,46 @@
-doctype html
-html(lang="en")
-  head
-    title Assignment 3: Build a Website with MySQL
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    header
-      h1 Assignment 3: Build a Website with MySQL
-      h2 Welcome to home page!!
-    main
-      form(action='/', method='post')
-        label Please enter info to register:
-          div.container
-            input(type='email', name='email', placeholder='email')
-            input(type='text', name='username', placeholder='username')
-            input(type='password', name='password', placeholder='password')
-          button(type='submit', class='button') Submit
+extends layout 
+
+block content
+  header
+    h1 Assignment 3: Build a Website with MySQL
+    h2 Welcome to home page!!
+  main
+    // 錯誤訊息提示
+    if errorMessage 
+      h3.error #{errorMessage}
+    
+    // 選擇要註冊還是登入
+    button(onclick="showForm('signin')") Sign In
+    button(onclick="showForm('signup')") Sign Up
+
+    #formContainer
+
+    script.
+      function showForm(formType) {
+        var formContainer = document.getElementById('formContainer');
+        if (formType === 'signup') {
+          formContainer.innerHTML = `
+            <form action='/signup' method='post'>
+              <label>Please enter info to register:</label>
+              <div class='container'>
+                <input type='email' name='email' placeholder='email'>
+                <input type='text' name='username' placeholder='username'>
+                <input type='password' name='password' placeholder='password'>
+              </div>
+              <button type='submit' class='button'>Submit</button>
+            </form>
+          `;
+        } else if (formType === 'signin') {
+          formContainer.innerHTML = `
+            <form action='/signin' method='post'>
+              <label>Please enter info to login:</label>
+              <div class='container'>
+                <input type='email' name='email' placeholder='email'>
+                <input type='text' name='username' placeholder='username'>
+                <input type='password' name='password' placeholder='password'>
+              </div>
+              <button type='submit' class='button'>Submit</button>
+            </form>
+          `;
+        }
+      }
