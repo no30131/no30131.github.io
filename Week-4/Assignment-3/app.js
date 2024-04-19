@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+const dotenv = require('dotenv');
 
+dotenv.config();
 const app = express();
 const port = 3000;
 let userName = "";
@@ -15,10 +17,10 @@ router.use(bodyParser.urlencoded({ extended: false }));
 // Database
 const pool = mysql
   .createPool({
-    host: "127.0.0.1",
-    user: "root",
-    password: "sS123456",
-    database: "assignment",
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
   })
   .promise();
 
