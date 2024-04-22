@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -11,6 +12,7 @@ let userName = "";
 
 app.use("/", router);
 app.set("view engine", "pug");
+router.use(cookieParser());
 router.use(express.static("public"));
 router.use(bodyParser.urlencoded({ extended: false }));
 
@@ -24,15 +26,7 @@ const pool = mysql
   })
   .promise();
 
-pool.getConnection((err, connection) => {
-  if (err) {
-    console.error("Error connecting to database: ", err);
-    return;
-  }
-  connection.release();
-});
-
-app.get("/", (req, res) => {
+  app.get("/", (req, res) => {
   res.render("index");
 });
 
@@ -62,7 +56,7 @@ app.post("/signup", async (req, res) => {
         "INSERT INTO user (email, username, password) VALUES (?, ?, ?)",
         [email, username, password]
       );
-      userName = username;
+      res.cookie('userName', username);
       res.redirect("/member");
     }
   } catch (error) {
@@ -96,7 +90,7 @@ app.post("/signin", async (req, res) => {
       console.log(rows);
       if (rows.length > 0) {
         // 成功登入，記住 username 並重導向
-        userName = username;
+        res.cookie('userName', username);
         res.redirect("/member");
       } else {
         const errorMessage =
@@ -118,7 +112,8 @@ app.post("/signin", async (req, res) => {
 
 app.get("/member", (req, res) => {
   // 檢查如果已登入才顯示 member 頁面，否則彈回登入頁
-  if (userName !== "") {
+  if (req.cookies.userName) {    
+    userName = req.cookies.userName;
     res.render("member.pug", { name: userName });
   } else {
     res.redirect("/");
