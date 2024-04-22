@@ -10,4 +10,4 @@ ON article.author = user.username;
 SELECT *
 FROM article
 WHERE id
-BETWEEN 7 AND 12;
+LIMIT 6, 6;
