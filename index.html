@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音樂播放器示例</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; }
+    .song { border-bottom: 1px solid #ccc; padding: 10px 0; }
+    .lyrics { display: none; margin-top: 5px; color: #444; white-space: pre-line; }
+    .toggle-btn { cursor: pointer; color: #0066cc; text-decoration: underline; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <h1>音樂列表</h1>
+
+  <div class="song">
+    <h3>月亮笑了</h3>
+    <audio controls src="media/月亮笑了.mp3"></audio>
+    <div class="toggle-btn" onclick="toggleLyrics(this)">▶ 展開歌詞</div>
+    <div class="lyrics">
+      月亮笑了 
+      歌詞
+    </div>
+  </div>
+
+  <div class="song">
+    <h3>心之所向</h3>
+    <audio controls src="media/心之所向.mp3"></audio>
+    <div class="toggle-btn" onclick="toggleLyrics(this)">▶ 展開歌詞</div>
+    <div class="lyrics">
+      心之所向 
+      歌詞
+    </div>
+  </div>
+
+  <div class="song">
+    <h3>一瞬間</h3>
+    <audio controls src="media/一瞬間.mp3"></audio>
+    <div class="toggle-btn" onclick="toggleLyrics(this)">▶ 展開歌詞</div>
+    <div class="lyrics">
+      一瞬間 
+      歌詞
+    </div>
+  </div>
+
+
+  <script>
+    function toggleLyrics(btn) {
+      const lyrics = btn.nextElementSibling;
+      const isShown = lyrics.style.display === "block";
+      lyrics.style.display = isShown ? "none" : "block";
+      btn.textContent = isShown ? "▶ 展開歌詞" : "▼ 收合歌詞";
+    }
+  </script>
+</body>
+</html>
